@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+        xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        xmlns:sag='urn:import:au.com.arclight.sag.client.domain.mvp.widget.ui'
+		xmlns:a='urn:import:au.com.arclight.sag.client.domain.mvp.view.explorer'
+		xmlns:d="urn:import:com.google.gwt.dom.client">
+    <ui:style>	
+	</ui:style>
+	<ui:with field="resources" type="au.com.arclight.sag.client.node.application.resource.Resources"/>
+	<a:ExplorerGridlet ui:field="basePanel" 
+		displayTitle="Contact Details" 
+		noItemLabel="No Contact details have been entered.">
+		<a:child>
+			<g:HTMLPanel>
+			</g:HTMLPanel>
+		</a:child>
+	</a:ExplorerGridlet>
+</ui:UiBinder>
