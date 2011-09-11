@@ -1,7 +1,9 @@
 package generators;
 
 import generators.config.Config;
-import generators.generated.templates.EntityAttributeUiXml;
+import generators.generated.templates.EntityAttributeGridletUiXml;
+import generators.generated.templates.EntityAttributeGridletView;
+import generators.generated.templates.EntityAttributeGridletViewImpl;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,15 +37,40 @@ public class GridletGenerator
 			ArrayList<String> attributes = new ArrayList<String>();
 			attributes.add("Contact");
 			
+			String output;
+			FileOutputStream newOut;
+			
+			//End config, begin generation
 			for(String attribute : attributes)
 			{
-				EntityAttributeUiXml uiTemplate = new EntityAttributeUiXml();
-				String result = uiTemplate.generate(attribute);
+				//Gridlet ui.xml
+				EntityAttributeGridletUiXml gridletUiTemplate = new EntityAttributeGridletUiXml();
+				output = gridletUiTemplate.generate(entity, attribute);
 				
-				FileOutputStream newOut = new FileOutputStream(Config.outputPath + 
-						entity + attribute + ".ui.xml");  
+				newOut = new FileOutputStream(Config.outputPath + 
+						entity + attribute + "Gridlet.ui.xml");  
 				    
-				newOut.write(result.getBytes());  
+				newOut.write(output.getBytes());  
+				newOut.close();
+				
+				//Gridlet view
+				EntityAttributeGridletView gridletView = new EntityAttributeGridletView();
+				output = gridletView.generate(entity, attribute);
+				
+				newOut = new FileOutputStream(Config.outputPath + 
+						entity + attribute + "GridletView.java");  
+				    
+				newOut.write(output.getBytes());  
+				newOut.close();
+				
+				//Gridlet viewImpl
+				EntityAttributeGridletViewImpl gridletViewImpl = new EntityAttributeGridletViewImpl();
+				output = gridletViewImpl.generate(entity, attribute);
+				
+				newOut = new FileOutputStream(Config.outputPath + 
+						entity + attribute + "GridletViewImpl.java");  
+				    
+				newOut.write(output.getBytes());  
 				newOut.close();
 			}
 		}

@@ -1,0 +1,18 @@
+<%@ jet package="generators.generated.templates" 
+class="EntityAttributeGridletView" 
+skeleton="gridletGenerator.skeleton"%>
+<%String entityAttribute = entity + attribute;%>
+package au.com.arclight.sag.client.domain.mvp.view.explorer.person.gridlet;
+
+import au.com.arclight.sag.client.domain.mvp.view.explorer.ExplorerGridletPresenter;
+import au.com.arclight.sag.client.domain.mvp.view.explorer.ExplorerGridletView;
+
+public interface I<%=entityAttribute%>GridletView extends ExplorerGridletView
+{
+	public interface Presenter extends ExplorerGridletPresenter
+	{
+
+	}
+	
+	public void setPresenter(Presenter presenter);
+}

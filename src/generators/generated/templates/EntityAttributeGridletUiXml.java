@@ -1,12 +1,12 @@
 package generators.generated.templates;
 
-public class EntityAttributeUiXml
+public class EntityAttributeGridletUiXml
 {
   protected static String nl;
-  public static synchronized EntityAttributeUiXml create(String lineSeparator)
+  public static synchronized EntityAttributeGridletUiXml create(String lineSeparator)
   {
     nl = lineSeparator;
-    EntityAttributeUiXml result = new EntityAttributeUiXml();
+    EntityAttributeGridletUiXml result = new EntityAttributeGridletUiXml();
     nl = null;
     return result;
   }
@@ -16,13 +16,13 @@ public class EntityAttributeUiXml
   protected final String TEXT_2 = " Details\" " + NL + "\t\tnoItemLabel=\"No ";
   protected final String TEXT_3 = " details have been entered.\">" + NL + "\t\t<a:child>" + NL + "\t\t\t<g:HTMLPanel>" + NL + "\t\t\t</g:HTMLPanel>" + NL + "\t\t</a:child>" + NL + "\t</a:ExplorerGridlet>" + NL + "</ui:UiBinder>";
 
-  public String generate(Object argument)
+	public String generate(String entity, String attribute)
   {
     final StringBuffer stringBuffer = new StringBuffer();
     stringBuffer.append(TEXT_1);
-    stringBuffer.append(argument);
+    stringBuffer.append(attribute);
     stringBuffer.append(TEXT_2);
-    stringBuffer.append(argument);
+    stringBuffer.append(attribute);
     stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
