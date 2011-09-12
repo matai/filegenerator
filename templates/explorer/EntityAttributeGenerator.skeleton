@@ -1,0 +1,7 @@
+public class CLASS extends AbstractExplorerTemplate implements IExplorerTemplate
+{
+	public String generate(String Entity, String Attribute)
+   	{
+    	return "";
+   	}
+}

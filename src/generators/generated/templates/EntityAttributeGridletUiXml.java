@@ -1,6 +1,6 @@
 package generators.generated.templates;
 
-public class EntityAttributeGridletUiXml
+public class EntityAttributeGridletUiXml extends AbstractExplorerTemplate implements IExplorerTemplate
 {
   protected static String nl;
   public static synchronized EntityAttributeGridletUiXml create(String lineSeparator)
@@ -16,11 +16,13 @@ public class EntityAttributeGridletUiXml
   protected final String TEXT_2 = " Details\" " + NL + "\t\tnoItemLabel=\"No ";
   protected final String TEXT_3 = " details have been entered.\">" + NL + "\t\t<a:child>" + NL + "\t\t\t<g:HTMLPanel>" + NL + "\t\t\t</g:HTMLPanel>" + NL + "\t\t</a:child>" + NL + "\t</a:ExplorerGridlet>" + NL + "</ui:UiBinder>";
 
-	public String generate(String entity, String attribute)
+	public String generate(String Entity, String Attribute)
   {
     final StringBuffer stringBuffer = new StringBuffer();
+    fileName = "Gridlet.ui.xml";
+    String attribute = Attribute.toLowerCase();
     stringBuffer.append(TEXT_1);
-    stringBuffer.append(attribute);
+    stringBuffer.append(Attribute);
     stringBuffer.append(TEXT_2);
     stringBuffer.append(attribute);
     stringBuffer.append(TEXT_3);

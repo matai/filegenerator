@@ -1,9 +1,15 @@
 package generators;
 
 import generators.config.Config;
+import generators.generated.templates.EntityAttributeGridletPresenter;
 import generators.generated.templates.EntityAttributeGridletUiXml;
 import generators.generated.templates.EntityAttributeGridletView;
 import generators.generated.templates.EntityAttributeGridletViewImpl;
+import generators.generated.templates.EntityAttributePopupPresenter;
+import generators.generated.templates.EntityAttributePopupUiXml;
+import generators.generated.templates.EntityAttributePopupView;
+import generators.generated.templates.EntityAttributePopupViewImpl;
+import generators.generated.templates.IExplorerTemplate;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,11 +23,12 @@ public class GridletGenerator
 	{
 		try
 		{
-			//1. Alter the configuration output path (optional)
-			Config.outputPath = "C:\\Workworkspace\\filegenerator\\src\\generators\\output\\";
+			//Alter the configuration output path (optional)
+			Config.outputPath = "C:\\WorkspaceHot\\filegenerator\\src\\generators\\output\\";
 			
 			File outPutDirectory = new File(Config.outputPath);
 			
+			//Clear output directory
 			File[] files = outPutDirectory.listFiles();
 			List<File> listFiles = Arrays.asList(files);
 			
@@ -30,48 +37,40 @@ public class GridletGenerator
 				file.delete();
 			}
 			
-			//2. Alter entity type here
+			//Alter entity type here
 			String entity = "Person";
 			
-			//3. Add attribute types here
+			//Add attribute types here
 			ArrayList<String> attributes = new ArrayList<String>();
 			attributes.add("Contact");
 			
-			String output;
-			FileOutputStream newOut;
-			
 			//End config, begin generation
+			ArrayList<IExplorerTemplate> templateList = new ArrayList<IExplorerTemplate>();
+
+			templateList.add(new EntityAttributePopupUiXml());
+			templateList.add(new EntityAttributePopupView());
+			templateList.add(new EntityAttributePopupViewImpl());
+			templateList.add(new EntityAttributePopupPresenter());
+			templateList.add(new EntityAttributeGridletUiXml());
+			templateList.add(new EntityAttributeGridletView());
+			templateList.add(new EntityAttributeGridletViewImpl());
+			templateList.add(new EntityAttributeGridletPresenter());
+			
+			String output;
+			FileOutputStream fileOut;
+			
 			for(String attribute : attributes)
-			{
-				//Gridlet ui.xml
-				EntityAttributeGridletUiXml gridletUiTemplate = new EntityAttributeGridletUiXml();
-				output = gridletUiTemplate.generate(entity, attribute);
-				
-				newOut = new FileOutputStream(Config.outputPath + 
-						entity + attribute + "Gridlet.ui.xml");  
-				    
-				newOut.write(output.getBytes());  
-				newOut.close();
-				
-				//Gridlet view
-				EntityAttributeGridletView gridletView = new EntityAttributeGridletView();
-				output = gridletView.generate(entity, attribute);
-				
-				newOut = new FileOutputStream(Config.outputPath + 
-						entity + attribute + "GridletView.java");  
-				    
-				newOut.write(output.getBytes());  
-				newOut.close();
-				
-				//Gridlet viewImpl
-				EntityAttributeGridletViewImpl gridletViewImpl = new EntityAttributeGridletViewImpl();
-				output = gridletViewImpl.generate(entity, attribute);
-				
-				newOut = new FileOutputStream(Config.outputPath + 
-						entity + attribute + "GridletViewImpl.java");  
-				    
-				newOut.write(output.getBytes());  
-				newOut.close();
+			{			
+				for(IExplorerTemplate template : templateList)
+				{
+					output = template.generate(entity, attribute);
+					
+					fileOut = new FileOutputStream(Config.outputPath + 
+							entity + attribute + template.getFileName());  
+					
+					fileOut.write(output.getBytes());  
+					fileOut.close();
+				}
 			}
 		}
 		catch (Exception e)

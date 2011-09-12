@@ -1,7 +1,0 @@
-public class CLASS
-{
-	public String generate(String entity, String attribute)
-   	{
-    	return "";
-   	}
-}

@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+        xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        xmlns:a='urn:import:au.com.arclight.sag.client.domain.mvp.view.explorer'
+>
+<ui:style>	
+</ui:style>
+<ui:with field="resources" type="au.com.arclight.sag.client.node.application.resource.Resources"/>
+	<a:ExplorerDetailsPopup ui:field="basePanel" displayTitle="Attribute Details">
+		<a:child>
+			<g:HTMLPanel>
+				<div ui:field="noItemsLabel" class="{resources.style.hidden}">
+					All attribute details have been removed.
+				</div>
+			</g:HTMLPanel>
+		</a:child>
+	</a:ExplorerDetailsPopup>
+</ui:UiBinder>

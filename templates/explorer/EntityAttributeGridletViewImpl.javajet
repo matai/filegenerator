@@ -1,8 +1,11 @@
 <%@ jet package="generators.generated.templates" 
 class="EntityAttributeGridletViewImpl" 
-skeleton="gridletGenerator.skeleton"%>
-<%String entityAttribute = entity + attribute;%>
-package au.com.arclight.sag.client.domain.mvp.view.explorer.person.gridlet;
+skeleton="entityAttributeGenerator.skeleton"%>
+<%fileName = "GridletViewImpl.java";%>
+<%String entity = Entity.toLowerCase();%>
+<%String entityAttribute = entity + Attribute;%>
+<%String EntityAttribute = Entity + Attribute;%>
+package au.com.arclight.sag.client.domain.mvp.view.explorer.<%=entity%>.gridlet;
 
 import au.com.arclight.sag.client.domain.mvp.view.explorer.AbstractGridletViewImpl;
 
@@ -12,17 +15,17 @@ import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
-public class <%=entityAttribute%>GridletViewImpl extends AbstractGridletViewImpl 
-implements I<%=entityAttribute%>GridletView
+public class <%=EntityAttribute%>GridletViewImpl extends AbstractGridletViewImpl 
+implements I<%=EntityAttribute%>GridletView
 {
 	private Presenter presenter;
 	
-	@UiTemplate( "template/<%=entityAttribute%>Gridlet.ui.xml" ) 
-	public interface WidgetUiBinder extends UiBinder< Widget, <%=entityAttribute%>GridletViewImpl >{}
+	@UiTemplate( "template/<%=EntityAttribute%>Gridlet.ui.xml" ) 
+	public interface WidgetUiBinder extends UiBinder< Widget, <%=EntityAttribute%>GridletViewImpl >{}
 	private static WidgetUiBinder uiBinder = GWT.create(WidgetUiBinder.class);
 
 	@Inject
-	public <%=entityAttribute%>GridletViewImpl()
+	public <%=EntityAttribute%>GridletViewImpl()
 	{
 		super();
 		

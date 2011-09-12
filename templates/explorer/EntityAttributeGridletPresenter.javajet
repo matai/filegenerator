@@ -1,0 +1,68 @@
+<%@ jet package="generators.generated.templates" 
+class="EntityAttributeGridletPresenter" 
+skeleton="entityAttributeGenerator.skeleton"%>
+<%fileName = "GridletPresenter.java";%>
+<%String entity = Entity.toLowerCase();%>
+<%String entityAttribute = entity + Attribute;%>
+<%String EntityAttribute = Entity + Attribute;%>
+package au.com.arclight.sag.client.domain.mvp.presenter.explorer.<%=entity%>.gridlet;
+
+import net.customware.gwt.presenter.client.EventBus;
+import au.com.arclight.sag.client.domain.model.<%=entity%>.<%=Entity%>;
+import au.com.arclight.sag.client.domain.mvp.presenter.explorer.AbstractGridletPresenter;
+import au.com.arclight.sag.client.domain.mvp.presenter.explorer.IExplorerPopupHandler;
+import au.com.arclight.sag.client.domain.mvp.presenter.explorer.IQueryCompleteCallback;
+import au.com.arclight.sag.client.domain.mvp.presenter.explorer.<%=entity%>.Explorer<%=Entity%>DataService;
+import au.com.arclight.sag.client.domain.mvp.presenter.explorer.<%=entity%>.popup.<%=EntityAttribute%>PopupPresenter;
+import au.com.arclight.sag.client.domain.mvp.view.explorer.<%=entity%>.gridlet.I<%=EntityAttribute%>GridletView;
+
+import com.google.inject.Inject;
+
+public class <%=EntityAttribute%>GridletPresenter extends AbstractGridletPresenter 
+	implements I<%=EntityAttribute%>GridletView.Presenter
+{
+	@Inject private <%=EntityAttribute%>PopupPresenter <%=entityAttribute%>Popup;
+	@Inject private Explorer<%=Entity%>DataService <%=entity%>QueryService;
+	
+	private I<%=EntityAttribute%>GridletView view;
+	
+	private <%=Entity%> <%=entity%>;
+	private <%=Entity%> old<%=Entity%>;
+	
+	@Inject
+	public <%=EntityAttribute%>GridletPresenter(EventBus eventBus, I<%=EntityAttribute%>GridletView view)
+	{
+		super(eventBus, view);
+		this.view = view;
+		
+		view.setPresenter(this);
+	}
+
+	public void init() 
+	{
+		registerExplorerEditClickHandler();
+		registerExplorerDoneClickHandler();
+		registerEditClickedHandler();
+		registerEditCancelHandler(<%=entityAttribute%>Popup);
+		registerEditSaveHandler();
+		
+		isLoaded = false;
+		<%=entity%> = <%=entity%>QueryService.get<%=Entity%>();
+		old<%=Entity%> = <%=entity%>QueryService.getOld<%=Entity%>();
+	}
+
+	@Override
+	protected void registerEditSaveHandler() 
+	{
+		<%=entityAttribute%>Popup.setSaveHandler(new IExplorerPopupHandler()
+		{
+			@Override
+			public void handleEvent() 
+			{
+				view.hidePopup();
+				
+				//TODO : Your implementation to save the object here
+			}
+		});
+	}
+}
