@@ -20,7 +20,7 @@ public class <%=EntityAttribute%>PopupPresenter extends AbstractExplorerPopupPre
 	implements I<%=EntityAttribute%>PopupView.Presenter
 {
 	private I<%=EntityAttribute%>PopupView view;
-	private <%=Entity%> model;
+	private <%=Entity%> <%=entity%>;
 
 	@Inject
 	public <%=EntityAttribute%>PopupPresenter(I<%=EntityAttribute%>PopupView view)
@@ -36,9 +36,9 @@ public class <%=EntityAttribute%>PopupPresenter extends AbstractExplorerPopupPre
 	}
 	
 	@Override
-	public void init(<%=entity%> model)
+	public void init(<%=Entity%> <%=entity%>)
 	{
-		this.model = model;
+		this.<%=entity%> = <%=entity%>;
 	}
 
 	@Override

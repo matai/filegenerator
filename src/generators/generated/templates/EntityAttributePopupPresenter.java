@@ -21,10 +21,14 @@ public class EntityAttributePopupPresenter extends AbstractExplorerTemplate impl
   protected final String TEXT_7 = ">" + NL + "\timplements I";
   protected final String TEXT_8 = "PopupView.Presenter" + NL + "{" + NL + "\tprivate I";
   protected final String TEXT_9 = "PopupView view;" + NL + "\tprivate ";
-  protected final String TEXT_10 = " model;" + NL + "" + NL + "\t@Inject" + NL + "\tpublic ";
-  protected final String TEXT_11 = "PopupPresenter(I";
-  protected final String TEXT_12 = "PopupView view)" + NL + "\t{" + NL + "\t\tthis.view = view;" + NL + "\t\tview.setPresenter(this);" + NL + "\t}" + NL + "" + NL + "\t@Override" + NL + "\tpublic void go(HasOneWidget container) " + NL + "\t{" + NL + "\t\tcontainer.setWidget(view.asWidget());" + NL + "\t}" + NL + "\t" + NL + "\t@Override" + NL + "\tpublic void init(";
-  protected final String TEXT_13 = " model)" + NL + "\t{" + NL + "\t\tthis.model = model;" + NL + "\t}" + NL + "" + NL + "\t@Override" + NL + "\tpublic void buttonSaveClicked() " + NL + "\t{" + NL + "\t\t//TODO : Your implementation here to set model results" + NL + "\t\tsaveHandler.handleEvent();" + NL + "\t}" + NL + "}";
+  protected final String TEXT_10 = " ";
+  protected final String TEXT_11 = ";" + NL + "" + NL + "\t@Inject" + NL + "\tpublic ";
+  protected final String TEXT_12 = "PopupPresenter(I";
+  protected final String TEXT_13 = "PopupView view)" + NL + "\t{" + NL + "\t\tthis.view = view;" + NL + "\t\tview.setPresenter(this);" + NL + "\t}" + NL + "" + NL + "\t@Override" + NL + "\tpublic void go(HasOneWidget container) " + NL + "\t{" + NL + "\t\tcontainer.setWidget(view.asWidget());" + NL + "\t}" + NL + "\t" + NL + "\t@Override" + NL + "\tpublic void init(";
+  protected final String TEXT_14 = " ";
+  protected final String TEXT_15 = ")" + NL + "\t{" + NL + "\t\tthis.";
+  protected final String TEXT_16 = " = ";
+  protected final String TEXT_17 = ";" + NL + "\t}" + NL + "" + NL + "\t@Override" + NL + "\tpublic void buttonSaveClicked() " + NL + "\t{" + NL + "\t\t//TODO : Your implementation here to set model results" + NL + "\t\tsaveHandler.handleEvent();" + NL + "\t}" + NL + "}";
 
 	public String generate(String Entity, String Attribute)
   {
@@ -52,12 +56,20 @@ public class EntityAttributePopupPresenter extends AbstractExplorerTemplate impl
     stringBuffer.append(TEXT_9);
     stringBuffer.append(Entity);
     stringBuffer.append(TEXT_10);
-    stringBuffer.append(EntityAttribute);
+    stringBuffer.append(entity);
     stringBuffer.append(TEXT_11);
     stringBuffer.append(EntityAttribute);
     stringBuffer.append(TEXT_12);
-    stringBuffer.append(entity);
+    stringBuffer.append(EntityAttribute);
     stringBuffer.append(TEXT_13);
+    stringBuffer.append(Entity);
+    stringBuffer.append(TEXT_14);
+    stringBuffer.append(entity);
+    stringBuffer.append(TEXT_15);
+    stringBuffer.append(entity);
+    stringBuffer.append(TEXT_16);
+    stringBuffer.append(entity);
+    stringBuffer.append(TEXT_17);
     return stringBuffer.toString();
   }
 }
